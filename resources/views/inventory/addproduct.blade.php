@@ -63,5 +63,5 @@
 @endsection
 
 @push('scripts')
-
+  <script>document.getElementById("inventory").classList.remove("collapsed");</script>
 @endpush

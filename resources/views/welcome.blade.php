@@ -131,5 +131,5 @@
 @endsection
 
 @push('scripts')
-
+  <script>document.getElementById("dashboard").classList.remove("collapsed");</script>
 @endpush

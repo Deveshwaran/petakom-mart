@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('welcome');
 });
 
@@ -24,3 +24,8 @@ Route::get('/inventory', function () {
 Route::get('/inventory/add', function () {
   return view('/inventory/addproduct');
 });
+
+Route::get('/promotion', function () {
+  return view('/promotion/promotion');
+});
+

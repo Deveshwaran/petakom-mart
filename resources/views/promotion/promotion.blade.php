@@ -3,23 +3,17 @@
 @section('content')
 
 <div class="pagetitle">
-  <h1>Inventory</h1>
+  <h1>Promotion</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item active">Inventory</li>
+      <li class="breadcrumb-item active">Promotion</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
   <div class="row">
-
-    <div class="col-lg-2 mb-3">
-        <a class="btn btn-success" href="/inventory/add">
-          Add Product
-        </a>
-    </div>
 
     <!-- Left side columns -->
     <div class="col-lg-12">
@@ -40,6 +34,7 @@
                     <th scope="col">Date Received</th>
                     <th scope="col">Product</th>
                     <th scope="col">Price (RM)</th>
+                    <th scope="col">Discount %</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
@@ -52,6 +47,7 @@
                     <td>Date Received</td>
                     <td>Brandon Jacob</td>
                     <td>64.00</td>
+                    <td>20</td>
                     <td>100</td>
                     <td>
                       <span class="badge bg-success">High</span>
@@ -59,8 +55,7 @@
                       <span class="badge bg-danger">Out of Stock</span>
                     </td>
                     <td>
-                      <button type="button" class="btn btn-success btn-sm"><i class="bi bi-plus-square"></i></button>
-                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                      <button type="button" class="btn btn-success btn-sm"><i class="bi bi-megaphone"></i></button>
                     </td>
                   </tr>
                 </tbody>
@@ -80,5 +75,5 @@
 @endsection
 
 @push('scripts')
-  <script>document.getElementById("inventory").classList.remove("collapsed");</script>
+  <script>document.getElementById("promotion").classList.remove("collapsed");</script>
 @endpush
