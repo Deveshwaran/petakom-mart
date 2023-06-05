@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -6,7 +6,7 @@
   <h1>Inventory</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
       <li class="breadcrumb-item active">Inventory</li>
     </ol>
   </nav>
@@ -16,7 +16,7 @@
   <div class="row">
 
     <div class="col-lg-2 mb-3">
-        <a class="btn btn-success" href="/inventory/add">
+        <a class="btn btn-success" href="{{ route('admin.addProduct') }}">
           Add Product
         </a>
     </div>

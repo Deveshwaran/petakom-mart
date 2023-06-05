@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommitteeController;
+use App\Http\Controllers\WorkerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +16,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::get('/', function () {
+    return view('auth.login');
 });
 
-Route::get('/inventory', function () {
-  return view('/inventory/inventory');
-});
 
-Route::get('/inventory/add', function () {
-  return view('/inventory/addproduct');
-});
+//Administrator
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
+Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('admin.inventory');
+Route::get('/admin/product/add', [AdminController::class, 'addProduct'])->name('admin.addProduct');
+Route::get('/admin/promotion', [AdminController::class, 'promotion'])->name('admin.promotion');
+Route::get('/admin/report', [AdminController::class, 'report'])->name('admin.report');
+Route::get('/admin/register', [AdminController::class, 'register'])->name('admin.register');
 
-Route::get('/promotion', function () {
-  return view('/promotion/promotion');
-});
+
+//Committee
+Route::get('/committee', [CommitteeController::class, 'index'])->name('committee.home');
+
+
+//Worker
+Route::get('/worker', [WorkerController::class, 'index'])->name('worker.home');
+
 

@@ -47,7 +47,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{ route('admin.home') }}" class="logo d-flex align-items-center">
         <img src="{{ asset('/assets/img/logo.png') }}" alt="">
         <span class="d-none d-lg-block">PETAKOM MART</span>
       </a>
@@ -67,21 +67,24 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-person"></i>
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6>{{ Auth::user()->name }}</h6>
+              <span>{{ Auth::user()->role->name }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>Log Out</span>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
               </a>
             </li>
 
@@ -99,46 +102,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/dashboard" id="dashboard">
+        <a class="nav-link collapsed" href="" id="dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/promotion" id="promotion">
-          <i class="bi bi-cart"></i>
-          <span>Promotion</span>
-        </a>
-      </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/inventory" id="inventory">
+        <a class="nav-link collapsed" href="" id="inventory">
           <i class="bi bi-box-seam"></i> 
           <span>Inventory</span>
         </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-          <i class="bi bi-currency-dollar"></i>
-          <span>Payment</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
+      </li><!-- End Inventory Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="">
           <i class="bi bi-bar-chart"></i>
           <span>Report</span>
         </a>
-      </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      </li><!-- End Report Page Nav -->
 
     </ul>
 

@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -6,7 +6,7 @@
   <h1>Promotion</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
       <li class="breadcrumb-item active">Promotion</li>
     </ol>
   </nav>
