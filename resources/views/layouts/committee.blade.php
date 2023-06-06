@@ -66,7 +66,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-person"></i>
+            <i class="bi bi-person-fill"></i>
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
           </a><!-- End Profile Iamge Icon -->
 
@@ -102,14 +102,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="" id="dashboard">
+        <a class="nav-link collapsed" href="{{ route('committee.home') }}" id="dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="" id="inventory">
+        <a class="nav-link collapsed" href="{{ route('committee.inventory') }}" id="inventory">
           <i class="bi bi-box-seam"></i> 
           <span>Inventory</span>
         </a>

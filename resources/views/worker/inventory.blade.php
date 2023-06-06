@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.worker')
 
 @section('content')
 
@@ -6,7 +6,7 @@
   <h1>Inventory</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('worker.home') }}">Home</a></li>
       <li class="breadcrumb-item active">Inventory</li>
     </ol>
   </nav>
@@ -16,7 +16,7 @@
   <div class="row">
 
     <div class="col-lg-2 mb-3">
-        <a class="btn btn-success" href="{{ route('admin.addProduct') }}">
+        <a class="btn btn-success" href="{{ route('worker.addProduct') }}">
           Add Product
         </a>
     </div>
@@ -76,7 +76,7 @@
                                 <h5 class="modal-title">Add Stock</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
-                              <form method="POST" action="{{ route('admin.addStock', $product->id) }}">
+                              <form method="POST" action="{{ route('worker.addStock', $product->id) }}">
                                 @csrf
                                 <div class="modal-body">
                                   <input type="text" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="Enter stock amount">
@@ -104,7 +104,7 @@
                                 <h5 class="modal-title">Minus Stock</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
-                              <form method="POST" action="{{ route('admin.minusStock', $product->id) }}">
+                              <form method="POST" action="{{ route('worker.minusStock', $product->id) }}">
                                 @csrf
                                 <div class="modal-body">
                                   <input type="text" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="Enter stock amount">

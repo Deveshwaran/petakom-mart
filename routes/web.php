@@ -38,9 +38,15 @@ Route::get('/admin/register', [AdminController::class, 'register'])->name('admin
 
 //Committee
 Route::get('/committee', [CommitteeController::class, 'index'])->name('committee.home');
+Route::get('/committee/inventory', [CommitteeController::class, 'inventory'])->name('committee.inventory');
 
 
 //Worker
 Route::get('/worker', [WorkerController::class, 'index'])->name('worker.home');
+Route::get('/worker/inventory', [WorkerController::class, 'inventory'])->name('worker.inventory');
+Route::get('/worker/product/add', [WorkerController::class, 'addProduct'])->name('worker.addProduct');
+Route::post('/worker/product/create', [WorkerController::class, 'createProduct'])->name('worker.createProduct');
+Route::post('/worker/product/addStock/{id}', [WorkerController::class, 'addStock'])->name('worker.addStock');
+Route::post('/worker/product/minusStock/{id}', [WorkerController::class, 'minusStock'])->name('worker.minusStock');
 
 

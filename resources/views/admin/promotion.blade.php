@@ -57,9 +57,9 @@
                         @endif
                       </td>
                       <td>
-                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#setDiscountModal"><i class="bi bi-megaphone"></i></button>
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#setDiscountModal{{ $product->id }}"><i class="bi bi-megaphone"></i></button>
 
-                        <div class="modal fade" id="setDiscountModal" tabindex="-1">
+                        <div class="modal fade" id="setDiscountModal{{ $product->id }}" tabindex="-1">
                           <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                               <div class="modal-header">
