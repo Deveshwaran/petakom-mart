@@ -39,6 +39,7 @@
                     <th scope="col">Supplier</th>
                     <th scope="col">Date Received</th>
                     <th scope="col">Product</th>
+                    <th scope="col">Cost (RM)</th>
                     <th scope="col">Price (RM)</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Status</th>
@@ -46,23 +47,85 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">#2457</th>
-                    <td>Supplier</td>
-                    <td>Date Received</td>
-                    <td>Brandon Jacob</td>
-                    <td>64.00</td>
-                    <td>100</td>
-                    <td>
-                      <span class="badge bg-success">High</span>
-                      <span class="badge bg-warning">Low</span>
-                      <span class="badge bg-danger">Out of Stock</span>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-success btn-sm"><i class="bi bi-plus-square"></i></button>
-                      <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                    </td>
-                  </tr>
+
+                  @foreach($products as $product)
+                    <tr>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $product->supplier }}</td>
+                      <td>{{ $product->date_received->format('d/m/Y') }}</td>
+                      <td>{{ $product->name }}</td>
+                      <td>{{ $product->cost }}</td>
+                      <td>{{ $product->price }}</td>
+                      <td>{{ $product->stock }}</td>
+                      <td>
+                        @if($product->stock > 20)
+                          <span class="badge bg-success">High</span>
+                        @elseif($product->stock > 0 && $product->stock <= 20)
+                          <span class="badge bg-warning">Low</span>
+                        @else
+                          <span class="badge bg-danger">Out of Stock</span>
+                        @endif
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addStockModal"><i class="bx bx-plus"></i></button>
+
+                        <div class="modal fade" id="addStockModal" tabindex="-1">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Add Stock</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <form method="POST" action="{{ route('admin.addStock', $product->id) }}">
+                                @csrf
+                                <div class="modal-body">
+                                  <input type="text" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="Enter stock amount">
+                                  @error('stock')
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-success">Add</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!-- End Basic Modal-->
+
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#minusStockModal"><i class="bx bx-minus"></i></button>
+
+                        <div class="modal fade" id="minusStockModal" tabindex="-1">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Minus Stock</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <form method="POST" action="{{ route('admin.minusStock', $product->id) }}">
+                                @csrf
+                                <div class="modal-body">
+                                  <input type="text" name="stock" id="stock" class="form-control @error('stock') is-invalid @enderror" placeholder="Enter stock amount">
+                                  @error('stock')
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-warning">Minus</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!-- End Basic Modal-->
+                      </td>
+                    </tr>
+                  @endforeach
+
                 </tbody>
               </table>
 

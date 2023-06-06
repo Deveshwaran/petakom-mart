@@ -27,7 +27,11 @@ Route::get('/', function () {
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.home');
 Route::get('/admin/inventory', [AdminController::class, 'inventory'])->name('admin.inventory');
 Route::get('/admin/product/add', [AdminController::class, 'addProduct'])->name('admin.addProduct');
+Route::post('/admin/product/create', [AdminController::class, 'createProduct'])->name('admin.createProduct');
+Route::post('/admin/product/addStock/{id}', [AdminController::class, 'addStock'])->name('admin.addStock');
+Route::post('/admin/product/minusStock/{id}', [AdminController::class, 'minusStock'])->name('admin.minusStock');
 Route::get('/admin/promotion', [AdminController::class, 'promotion'])->name('admin.promotion');
+Route::post('/admin/promotion/{id}', [AdminController::class, 'setDiscount'])->name('admin.setDiscount');
 Route::get('/admin/report', [AdminController::class, 'report'])->name('admin.report');
 Route::get('/admin/register', [AdminController::class, 'register'])->name('admin.register');
 

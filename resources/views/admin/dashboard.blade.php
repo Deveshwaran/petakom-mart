@@ -31,7 +31,7 @@
                   <i class="bi bi-cart"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>1244 products</h6>
+                  <h6>{{ $totalProducts }} products</h6>
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@
                   <i class="bi bi-box-seam"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>12 products</h6>
+                  <h6>{{ $outOfStock }} products</h6>
                 </div>
               </div>
 
@@ -93,27 +93,36 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Supplier</th>
-                    <th scope="col">Date Received</th>
                     <th scope="col">Product</th>
+                    <th scope="col">Cost (RM)</th>
                     <th scope="col">Price (RM)</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">#2457</th>
-                    <td>Supplier</td>
-                    <td>Date Received</td>
-                    <td>Brandon Jacob</td>
-                    <td>64.00</td>
-                    <td>100</td>
-                    <td>
-                      <span class="badge bg-success">High</span>
-                      <span class="badge bg-warning">Low</span>
-                      <span class="badge bg-danger">Out of Stock</span>
-                    </td>
-                  </tr>
+
+                  @foreach($products as $product)
+                    <tr>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $product->supplier }}</td>
+                      <td>{{ $product->name }}</td>
+                      <td>{{ $product->cost }}</td>
+                      <td>{{ $product->price }}</td>
+                      <td>{{ $product->stock }}</td>
+                      <td>
+                        @if($product->stock > 20)
+                          <span class="badge bg-success">High</span>
+                        @elseif($product->stock > 0 && $product->stock <= 20)
+                          <span class="badge bg-warning">Low</span>
+                        @else
+                          <span class="badge bg-danger">Out of Stock</span>
+                        @endif
+                      </td>
+                      <td>
+                    </tr>
+                  @endforeach
+
                 </tbody>
               </table>
 

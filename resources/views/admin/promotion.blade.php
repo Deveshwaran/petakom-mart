@@ -30,34 +30,64 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Supplier</th>
-                    <th scope="col">Date Received</th>
                     <th scope="col">Product</th>
+                    <th scope="col">Cost (RM)</th>
                     <th scope="col">Price (RM)</th>
-                    <th scope="col">Discount %</th>
+                    <th scope="col">Discount (%)</th>
                     <th scope="col">Stock</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Promotion</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">#2457</th>
-                    <td>Supplier</td>
-                    <td>Date Received</td>
-                    <td>Brandon Jacob</td>
-                    <td>64.00</td>
-                    <td>20</td>
-                    <td>100</td>
-                    <td>
-                      <span class="badge bg-success">High</span>
-                      <span class="badge bg-warning">Low</span>
-                      <span class="badge bg-danger">Out of Stock</span>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-success btn-sm"><i class="bi bi-megaphone"></i></button>
-                    </td>
-                  </tr>
+
+                  @foreach($products as $product)
+                    <tr>
+                      <th scope="row">{{ $loop->iteration }}</th>
+                      <td>{{ $product->name }}</td>
+                      <td>{{ $product->cost }}</td>
+                      <td>{{ $product->price }}</td>
+                      <td>{{ $product->discount }}</td>
+                      <td>{{ $product->stock }}</td>
+                      <td>
+                        @if($product->discount > 0)
+                          <span class="badge bg-success">Ongoing</span>
+                        @else
+                          <span class="badge bg-secondary">None</span>
+                        @endif
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#setDiscountModal"><i class="bi bi-megaphone"></i></button>
+
+                        <div class="modal fade" id="setDiscountModal" tabindex="-1">
+                          <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Set Discount</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <form method="POST" action="{{ route('admin.setDiscount', $product->id) }}">
+                                @csrf
+                                <div class="modal-body">
+                                  <input type="text" name="discount" id="discount" class="form-control @error('discount') is-invalid @enderror" placeholder="Enter discount amount">
+                                  @error('discount')
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                  <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!-- End Basic Modal-->
+                      </td>
+                    </tr>
+                  @endforeach
+
                 </tbody>
               </table>
 
