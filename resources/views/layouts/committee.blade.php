@@ -116,7 +116,7 @@
       </li><!-- End Inventory Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{ route('committee.report') }}" id="report">
           <i class="bi bi-bar-chart"></i>
           <span>Report</span>
         </a>

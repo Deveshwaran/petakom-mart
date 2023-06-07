@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\WorkerController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,11 +34,15 @@ Route::get('/admin/promotion', [AdminController::class, 'promotion'])->name('adm
 Route::post('/admin/promotion/{id}', [AdminController::class, 'setDiscount'])->name('admin.setDiscount');
 Route::get('/admin/report', [AdminController::class, 'report'])->name('admin.report');
 Route::get('/admin/register', [AdminController::class, 'register'])->name('admin.register');
+Route::get('/admin/viewusers', [AdminController::class, 'viewusers'])->name('admin.viewusers');
+Route::post('/admin/register/create', [AdminController::class, 'createUser'])->name('admin.createUser');
+Route::delete('/admin/viewusers/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
 
 //Committee
 Route::get('/committee', [CommitteeController::class, 'index'])->name('committee.home');
 Route::get('/committee/inventory', [CommitteeController::class, 'inventory'])->name('committee.inventory');
+Route::get('/committee/report', [CommitteeController::class, 'report'])->name('committee.report');
 
 
 //Worker
@@ -48,5 +52,7 @@ Route::get('/worker/product/add', [WorkerController::class, 'addProduct'])->name
 Route::post('/worker/product/create', [WorkerController::class, 'createProduct'])->name('worker.createProduct');
 Route::post('/worker/product/addStock/{id}', [WorkerController::class, 'addStock'])->name('worker.addStock');
 Route::post('/worker/product/minusStock/{id}', [WorkerController::class, 'minusStock'])->name('worker.minusStock');
+Route::get('/worker/payment', [WorkerController::class, 'payment'])->name('worker.payment');
+Route::post('/worker/payment/add', [WorkerController::class, 'addpayment'])->name('worker.addpayment');
 
 

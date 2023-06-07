@@ -130,7 +130,7 @@
       </li><!-- End Report Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('admin.register') }}" id="register">
+        <a class="nav-link collapsed" href="{{ route('admin.viewusers') }}" id="viewusers">
           <i class="bi bi-card-list"></i>
           <span>Register</span>
         </a>

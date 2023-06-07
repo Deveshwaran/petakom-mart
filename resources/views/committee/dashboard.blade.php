@@ -73,7 +73,7 @@
                   <i class="bi bi-currency-dollar"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>RM 145.00</h6>
+                  <h6>RM {{ $total_sales }}</h6>
                 </div>
               </div>
             </div>
